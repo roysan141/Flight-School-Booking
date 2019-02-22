@@ -1,24 +1,7 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+#rails v 5.2.2
+#Required to build booking system
+  # 1)Account, 2)User, 3)Client, 4)Trainer, 5)Schedule, 6)Lesson, 7)Booking,
+      8)Lesson_Payment
+  # Need Admin to create Lessons (not associated with an Account)
