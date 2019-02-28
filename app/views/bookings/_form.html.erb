@@ -37,6 +37,11 @@
   </div>
 
   <div class="field">
+    <%= month_calendar events: @bookings do |date, bookings| %>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= form.label :cancellation_reason %>
     <%= form.text_area :cancellation_reason %>
   </div>
