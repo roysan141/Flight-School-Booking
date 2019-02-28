@@ -36,10 +36,6 @@
     <%= form.datetime_select :end_time %>
   </div>
 
-  <div class="field">
-    <%= month_calendar events: @bookings do |date, bookings| %>
-    <% end %>
-  </div>
 
   <div class="field">
     <%= form.label :cancellation_reason %>
