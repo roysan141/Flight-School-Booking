@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_02_27_135547) do
+ActiveRecord::Schema.define(version: 2019_02_27_221149) do
 
   create_table "bookings", force: :cascade do |t|
     t.string "status"
     t.string "title"
     t.integer "cost"
-    t.datetime "start"
+    t.datetime "start_time"
+    t.datetime "end_time"
     t.text "cancellation_reason"
     t.boolean "refunded"
     t.integer "user_id"
     t.integer "schedule_id"
     t.integer "lesson_id"
-    t.string "plane_model"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
