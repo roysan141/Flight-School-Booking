@@ -24,7 +24,7 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    @booking = current_user.bookings.build(booking_params)
 
     respond_to do |format|
       if @booking.save
@@ -69,6 +69,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:status, :title, :cost, :start_time, :end_time, :cancellation_reason, :refunded, :user_id, :schedule_id, :lesson_id)
+      params.require(:booking).permit(:plane_id,:start_time, :end_time)
     end
 end
