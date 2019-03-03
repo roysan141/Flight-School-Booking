@@ -16,6 +16,16 @@ class Booking < ApplicationRecord
   validate :booking_must_not_overlap_scoped_by_plane
   validate :booking_must_not_overlap_scoped_by_user
 
+
+  def calendar_time(key, date)
+    t = send(key.to_sym)
+    if t.to_date == date.to_date
+      return t.to_s(:time)
+    end
+    return t.strftime("%a %b #{t.day.ordinalize}")
+  end
+
+
   private
   def booking_must_not_overlap_scoped_by_plane
     return if self

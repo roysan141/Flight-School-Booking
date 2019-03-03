@@ -19,6 +19,20 @@ class BookingsController < ApplicationController
 
   # GET /bookings/1/edit
   def edit
+      @booking = Booking.find(params[:id])
+
+    if @booking.update(booking_params)
+      redirect_to @booking
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @booking = Booking.find(params[:id])
+    @booking.destroy
+
+    redirect_to articles_path
   end
 
   # POST /bookings
@@ -56,7 +70,7 @@ class BookingsController < ApplicationController
   def destroy
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to bookings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to bookings_url, notice: 'Booking was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -69,6 +83,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.require(:booking).permit(:plane_id,:start_time, :end_time)
+      params.permit(:plane_id,:start_time, :end_time)
     end
 end
