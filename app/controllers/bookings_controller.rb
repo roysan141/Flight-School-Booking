@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = Booking.all
+    @bookings = current_user.bookings
   end
 
   # GET /bookings/1
@@ -20,12 +20,6 @@ class BookingsController < ApplicationController
   # GET /bookings/1/edit
   def edit
       @booking = Booking.find(params[:id])
-
-    if @booking.update(booking_params)
-      redirect_to @booking
-    else
-      render 'edit'
-    end
   end
 
   def destroy
@@ -83,6 +77,6 @@ class BookingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
-      params.permit(:plane_id,:start_time, :end_time)
+      params.require(:booking).permit(:plane_id,:start_time, :end_time)
     end
 end
