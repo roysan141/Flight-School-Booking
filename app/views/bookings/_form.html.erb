@@ -24,6 +24,12 @@
   <div class="field">
       <%= form.label :plane_id %><br />
       <%= form.collection_select :plane_id, Plane.all, :id, :registration, include_blank: false %>
+  </div>
+
+  <div class="field">
+      <%= form.label :instructor_id %><br />
+      <%= form.collection_select :instructor_id, Instructor.all, :id, :name, include_blank: true %>
+  </div>
 
   <div class="actions">
     <%= form.submit %>

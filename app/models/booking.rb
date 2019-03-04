@@ -1,20 +1,17 @@
 class Booking < ApplicationRecord
   belongs_to :plane
   belongs_to :user
+  belongs_to :instructor, optional: true
 
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :user_id, presence: true
   validates :plane_id, presence: true
-
-  def end_must_be_after_start
-    if start_time >= end_time
-    errors.add(:end_time, "must be after start time")
-    end
-  end
-
   validate :booking_must_not_overlap_scoped_by_plane
   validate :booking_must_not_overlap_scoped_by_user
+  validate :instructor_must_be_available
+  validate :booking_must_not_overlap_scoped_by_instructor
+  validate :end_must_be_after_start
 
 
   def calendar_time(key, date)
@@ -27,6 +24,7 @@ class Booking < ApplicationRecord
 
 
   private
+
   def booking_must_not_overlap_scoped_by_plane
     return if self
                 .class
@@ -34,7 +32,7 @@ class Booking < ApplicationRecord
                 .where(plane_id: plane_id)
                 .where('start_time < ? AND end_time > ?', end_time, start_time)
                 .none?
-    errors.add(:base, 'Error, Plane unavailable at this time')
+    errors.add(:base, 'Error, plane unavailable at this time')
 
   end
 
@@ -45,7 +43,31 @@ class Booking < ApplicationRecord
                 .where(user_id: user_id)
                 .where('start_time < ? AND end_time > ?', end_time, start_time)
                 .none?
-    errors.add(:base, 'ERROR, User unavailable at this time')
+    errors.add(:base, 'ERROR, user unavailable at this time')
+  end
+
+  def booking_must_not_overlap_scoped_by_instructor
+    return unless instructor_id.present?
+    return if self
+                .class
+                .where.not(id: id)
+                .where(instructor_id: instructor_id)
+                .where('start_time < ? AND end_time > ?', end_time, start_time)
+                .none?
+    errors.add(:base, 'Error, instructor unavailable at this time')
+  end
+
+  def instructor_must_be_available
+    return unless instructor_id.present?
+    return if instructor.availabilities.
+      where('start_time <= ? AND end_time >= ?', start_time, end_time).first.present?
+    errors.add(:base, 'Error, instructor unavailable at this time')
+  end
+
+  def end_must_be_after_start
+    if start_time > end_time
+    errors.add(:end_time, "must be after start time")
+    end
   end
 
 

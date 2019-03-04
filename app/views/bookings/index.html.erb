@@ -9,14 +9,16 @@
   <tr>
     <th>Start Time</th>
     <th>End Time</th>
-    <th>Plane Id</th>
+    <th>Aircraft</th>
+    <th>Instructor</th>
   </tr>
 
   <% @bookings.each do |booking| %>
     <tr>
       <td><%= booking.start_time %></td>
       <td><%= booking.end_time %></td>
-      <td><%= booking.plane_id %></td>
+      <td><%= booking.plane.registration %> (<%= booking.plane.typ %>)</td>
+      <td><%= booking.instructor.name if booking.instructor.present? %></td>
       <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
       <td><%= link_to 'Delete', booking_path(booking),
               method: :delete,

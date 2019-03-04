@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_01_123303) do
+ActiveRecord::Schema.define(version: 2019_03_04_160249) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -38,6 +38,15 @@ ActiveRecord::Schema.define(version: 2019_03_01_123303) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "availabilities", force: :cascade do |t|
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.integer "instructor_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["instructor_id"], name: "index_availabilities_on_instructor_id"
+  end
+
   create_table "bookings", force: :cascade do |t|
     t.string "status"
     t.string "title"
@@ -52,10 +61,29 @@ ActiveRecord::Schema.define(version: 2019_03_01_123303) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "plane_id"
+    t.integer "instructor_id"
+    t.index ["instructor_id"], name: "index_bookings_on_instructor_id"
     t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
     t.index ["plane_id"], name: "index_bookings_on_plane_id"
     t.index ["schedule_id"], name: "index_bookings_on_schedule_id"
     t.index ["user_id"], name: "index_bookings_on_user_id"
+  end
+
+  create_table "instructors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "instructors_lessons", id: false, force: :cascade do |t|
+    t.integer "instructor_id", null: false
+    t.integer "lesson_id", null: false
+  end
+
+  create_table "lessons", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "planes", force: :cascade do |t|
