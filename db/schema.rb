@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_04_160249) do
+ActiveRecord::Schema.define(version: 2019_03_05_162101) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -48,12 +48,8 @@ ActiveRecord::Schema.define(version: 2019_03_04_160249) do
   end
 
   create_table "bookings", force: :cascade do |t|
-    t.string "status"
-    t.string "title"
-    t.integer "cost"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.text "cancellation_reason"
     t.boolean "refunded"
     t.integer "user_id"
     t.integer "schedule_id"
