@@ -6,4 +6,7 @@ class User < ApplicationRecord
 
   has_many :bookings
 
+  def name
+    email
+  end
 end
