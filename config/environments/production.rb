@@ -64,6 +64,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "Flight-School-Booking_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: "taranisbooking.herokuapp.com" }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
       :authentication => :plain,
