@@ -1,5 +1,10 @@
-<h1>New Booking</h1>
+<% content_for :title do %>
+  <h1 class="h2">Create A Booking</h1>
+<% end %>
+
+<div class="alert alert-info" role="alert">
+  If you book an instructor they will need to confirm the booking. 
+  You should receive an email shortly
+</div>
 
 <%= render 'form', booking: @booking %>
-
-<%= link_to 'Back', bookings_path %>
