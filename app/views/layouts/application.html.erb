@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
   <head>
+
     <title>FlightSchoolBooking</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -10,7 +11,47 @@
   </head>
 
   <body>
-    <%= render "layouts/alerts" %>
-    <%= yield %>
+    <nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Taranis Aviation LTD - Flight Booking</a>
+      <ul class="navbar-nav px-3">
+        <li class="nav-item text-nowrap">
+          <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"nav-link" %>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <%= link_to 'New Booking', new_booking_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Manage Bookings', bookings_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Instructor Availability', bookings_path, class: "nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to 'Profile', bookings_path, class: "nav-link" %>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+            <%= yield :title %>
+            <div class="btn-toolbar mb-2 mb-md-0">
+            </div>
+          </div>
+          <%= render "layouts/alerts" %>
+          <%= yield %>
+        </main>
+      </div>
+    </div>
   </body>
 </html>
+

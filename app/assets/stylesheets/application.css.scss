@@ -15,7 +15,21 @@
 @import "simple_calendar";
 @import "bootstrap";
 
+html, body {
+  background-color: #f8f9fa;
+}
 
+main {
+  height: 800px;
+  background-color: #fff;
+}
+
+.calendar-heading {
+  float: right;
+    color: black;
+    padding: 30px 0 30px 30px;
+    margin-top: -130px;
+}
 
 .booking {
   border: 1px solid #333;

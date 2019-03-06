@@ -1,9 +1,6 @@
-<p id="notice"><%= notice %></p>
-
-<%= link_to 'New Booking', new_booking_path %>
-<%= link_to 'Home', root_path %>
-
-<h1>Manage Bookings</h1>
+<% content_for :title do %>
+  <h1 class="h2">Manage Bookings</h1>
+<% end %>
 
 <table>
   <tr>
