@@ -7,6 +7,7 @@ ruby '2.5.1'
 gem 'validates_overlap'
 
 gem 'bootstrap', '~> 4.0.0'
+
 gem 'activeadmin'
 
 gem "simple_calendar", "~> 2.0"

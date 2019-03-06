@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Dear <%= @booking.user.email %>,</h1>
+    <p>
+      Congratulations! Your booking at <%= @booking.start_time %> has been confirmed by <%= @booking.instructor.name %><br>
+    </p>
+    <p>
+      Please follow this link to manage your bookings: <%= @url %>.
+    </p>
+    <p>
+      Thank you for your booking, have a good flight.
+    </p>
+  </body>
+</html>

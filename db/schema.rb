@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_172232) do
+ActiveRecord::Schema.define(version: 2019_03_06_165936) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_172232) do
     t.datetime "updated_at", null: false
     t.integer "plane_id"
     t.integer "instructor_id"
+    t.boolean "confirmed"
     t.index ["instructor_id"], name: "index_bookings_on_instructor_id"
     t.index ["lesson_id"], name: "index_bookings_on_lesson_id"
     t.index ["plane_id"], name: "index_bookings_on_plane_id"
@@ -68,6 +69,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_172232) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "email"
   end
 
   create_table "instructors_lessons", id: false, force: :cascade do |t|

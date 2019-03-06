@@ -64,6 +64,15 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "Flight-School-Booking_#{Rails.env}"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+      :authentication => :plain,
+      :address => ENV['MAILGUN_SMTP_SERVER'],
+      :port => ENV['MAILGUN_SMTP_PORT'],
+      :domain => 'taranisbooking.heroku.com',
+      :user_name => ENV['MAILGUN_SMTP_LOGIN'],
+      :password => ENV['MAILGUN_SMTP_PASSWORD']
+    }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

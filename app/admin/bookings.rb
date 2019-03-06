@@ -11,5 +11,5 @@ ActiveAdmin.register Booking do
 #   permitted << :other if params[:action] == 'create' && current_user.admin?
 #   permitted
 # end
-  permit_params :plane_id, :instructor_id, :start_time, :end_time, :user_id
+  permit_params :plane_id, :instructor_id, :start_time, :end_time, :user_id, :confirmed
 end
