@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :bookings
-
+  get 'availability', action: :availability, controller: 'pages'
+  
   devise_scope :user do
     authenticated :user do
       root :to => 'pages#home'

@@ -13,8 +13,8 @@ class Booking < ApplicationRecord
   validate :booking_must_not_overlap_scoped_by_instructor
   validate :end_must_be_after_start
 
-  after_create :send_booking_request_email
-  after_save :send_booking_confirmed_email, if: :saved_change_to_confirmed?
+  #after_create :send_booking_request_email
+  #after_save :send_booking_confirmed_email, if: :saved_change_to_confirmed?
 
 
   def calendar_time(key, date)

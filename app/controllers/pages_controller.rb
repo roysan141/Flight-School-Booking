@@ -6,4 +6,8 @@ class PagesController < ApplicationController
   def index
     @bookings = current_user.bookings.all
   end
+
+  def availability
+    @availabilities = Availability.all
+  end
 end

@@ -1,0 +1,16 @@
+<% content_for :title do %>
+  <h1 class="h2">Availability</h1>
+<% end %>
+
+<%= link_to 'Back', booking_path(booking) %>
+
+<%= month_calendar events: @availabilities do |date, availability| %>
+  <%= date %>
+
+  <% availabilities.each do |availability| %>
+    <div class="availability"><ul>
+        <li><%= availability.instructor.name if availability.instructor.present?%></li>
+        <li><%= booking.calendar_time(:start_time, date) %> - <%= booking.calendar_time(:end_time, date) %></li>
+    </ul></div>
+  <% end %>
+<% end %>
