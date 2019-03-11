@@ -8,6 +8,7 @@
   <% @availabilities.each do |availability| %>
     <div class="availability"><ul>
         <li><%= availability.instructor.name if availability.instructor.present?%></li>
+        <li><%= availability.calendar_time(:start_time, date) %> - <%= availability.calendar_time(:end_time, date) %></li>
     </ul></div>
   <% end %>
 <% end %>

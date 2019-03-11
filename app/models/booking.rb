@@ -46,7 +46,7 @@ class Booking < ApplicationRecord
                 .where(plane_id: plane_id)
                 .where('start_time < ? AND end_time > ?', end_time, start_time)
                 .none?
-    errors.add(:base, 'Error, plane unavailable at this time')
+    errors.add(:base, 'Error, aircraft unavailable at this time')
 
   end
 
@@ -83,6 +83,4 @@ class Booking < ApplicationRecord
     errors.add(:end_time, "must be after start time")
     end
   end
-
-
 end
