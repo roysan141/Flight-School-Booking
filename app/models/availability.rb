@@ -6,12 +6,19 @@ class Availability < ApplicationRecord
   validate :availability_must_not_overlap_scoped_by_instructor
   validate :end_must_be_after_start
 
-  def calendar_time(key, date)
-    t = send(key.to_sym)
-    if t.to_date == date.to_date
-      return t.to_s(:time)
+  def calendar_time(date)
+    start = start_time.strftime("%H:%M")
+    fin = end_time.strftime("%H:%M")
+    
+    if start_time.to_date < date.to_date
+      start = "09:00"
     end
-    return t.strftime("%a %b #{t.day.ordinalize}")
+    
+    if end_time.to_date > date.to_date
+      fin = "18:00"
+    end
+    
+    return "#{start} - #{fin}"
   end
 
   private

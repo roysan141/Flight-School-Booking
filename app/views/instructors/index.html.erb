@@ -2,26 +2,26 @@
   <h1 class="h2">Instructor Availability</h1>
   <div id="instructor-select" class="dropdown">
 
-  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Filter by instructor
-  </button>
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
-          <% Instructor.all.each do |i| %>
-              <%= link_to i.name, instructor_path(i), class:"dropdown-item" %>
-          <% end %>
-  </div>
-</div>
-<% end %>
-    <%= month_calendar events: @instructors.map(&:pseudo_availabilities).flatten do |date, availabilities| %>
-      <%= date %>
-
-      <% availabilities.each do |availability| %>
-        <div class="booking">
-          <ul>
-            <li><%= availability.instructor.name if availability.instructor.present?%></li>
-            <li><%= availability.calendar_time(:start_time, date) %> - <%= availability.calendar_time(:end_time, date) %></li>
-          </ul>
-         </div>
+    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Filter by instructor
+    </button>
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+      <% Instructor.all.each do |i| %>
+        <%= link_to i.name, instructor_path(i), class:"dropdown-item" %>
       <% end %>
-    <% end %>
+    </div>
+  </div>
+<% end %>
+<%= month_calendar events: @instructors.map(&:pseudo_availabilities).flatten do |date, availabilities| %>
+  <%= date %>
+
+  <% availabilities.each do |availability| %>
+    <div class="booking">
+      <ul>
+        <li><%= availability.instructor.name if availability.instructor.present?%></li>
+        <li><%= availability.calendar_time(date) %></li>
+      </ul>
+    </div>
+  <% end %>
+<% end %>
 
