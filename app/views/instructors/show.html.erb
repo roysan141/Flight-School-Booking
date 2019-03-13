@@ -1,0 +1,26 @@
+<% content_for :title do %>
+  <h1 class="h2">Availability for: <%= @instructor.name %></h1>
+    <div class="dropdown">
+  <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Filter by instructor
+  </button>
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+          <% Instructor.all.each do |i| %>
+              <%= link_to i.name, instructor_path(i), class:"dropdown-item" %>
+          <% end %>
+  </div>
+</div>
+<% end %>
+    <%= month_calendar events: @instructor.pseudo_availabilities do |date, availabilities| %>
+      <%= date %>
+
+      <% availabilities.each do |availability| %>
+        <div class="booking">
+          <ul>
+            <li><%= availability.instructor.name if availability.instructor.present?%></li>
+            <li><%= availability.calendar_time(:start_time, date) %> - <%= availability.calendar_time(:end_time, date) %></li>
+          </ul>
+         </div>
+      <% end %>
+    <% end %>
+
