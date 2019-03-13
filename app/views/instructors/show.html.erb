@@ -18,7 +18,7 @@
         <div class="booking">
           <ul>
             <li><%= availability.instructor.name if availability.instructor.present?%></li>
-            <li><%= availability.calendar_time(:start_time, date) %> - <%= availability.calendar_time(:end_time, date) %></li>
+            <li><%= availability.calendar_time(date) %></li>
           </ul>
          </div>
       <% end %>
