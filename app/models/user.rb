@@ -4,11 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :bookings
-
-  def name
-    email
-  end
+  has_many :booking
 
   def display_name
     name.present? ? name : email
