@@ -1,7 +1,6 @@
 <% content_for :title do %>
-  <h1 class="h2">Instructor Availability</h1>
-  <div id="instructor-select" class="dropdown">
-
+  <h1 class="h2">Availability for: <%= @instructor.name %></h1>
+    <div class="dropdown">
   <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     Filter by instructor
   </button>
@@ -12,7 +11,7 @@
   </div>
 </div>
 <% end %>
-    <%= month_calendar events: @instructors.map(&:pseudo_availabilities).flatten do |date, availabilities| %>
+    <%= month_calendar events: @instructor.pseudo_availabilities do |date, availabilities| %>
       <%= date %>
 
       <% availabilities.each do |availability| %>

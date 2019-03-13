@@ -6,7 +6,6 @@ Rails.application.routes.draw do
   resources :bookings
   resources :instructors
   resource :user
-  get 'availability', action: :availability, controller: 'pages'
 
   devise_scope :user do
     authenticated :user do
