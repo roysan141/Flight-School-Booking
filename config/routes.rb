@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   resources :bookings
+  resources :instructors
   resource :user
   get 'availability', action: :availability, controller: 'pages'
 
