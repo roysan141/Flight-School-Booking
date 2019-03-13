@@ -1,14 +1,14 @@
-<%= form_with(model: user, local: true) do |form| %>
+<%= form_with(model: user, local: true, url:user_path, method:"PUT") do |form| %>
 
   <div class="field">
-  <%= form.label :name %>
-  <%= form.text_field :name, placeholder: "Full Name" %>
+    <%= form.label :name %>
+    <%= form.text_field :name, placeholder: "Full Name" %>
   </div>
 
   <div class="field">
-  <%= form.label :phone %>
-  <%= form.text_field :phone, placeholder: "Phone Number" %>
+    <%= form.label :phone %>
+    <%= form.text_field :phone, placeholder: "Phone Number" %>
   </div>
 
-  <%= link_to "Submit", user_path %>
+  <%= form.submit class:"btn btn-primary" %>
 <% end %>
