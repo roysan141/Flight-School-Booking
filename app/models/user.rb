@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :bookings
 
-  def name
-    email
+  def display_name
+    name.present? ? name : email
   end
 end
