@@ -9,4 +9,8 @@ class User < ApplicationRecord
   def name
     email
   end
+
+  def display_name
+    name.present? ? name : email
+  end
 end
