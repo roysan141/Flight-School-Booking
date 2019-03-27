@@ -4,7 +4,7 @@ class BookingsController < ApplicationController
   # GET /bookings
   # GET /bookings.json
   def index
-    @bookings = current_user.bookings
+    @bookings = Booking.search(params[:term], params[:page])
   end
 
   # GET /bookings/1
@@ -14,7 +14,17 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
-    @booking = Booking.new
+    instructor_id = params[:instructor_id]
+    start_time = params[:start_time]
+    end_time = nil
+    if start_time.present?
+      end_time = Time.parse(start_time) + 30.minutes
+    end
+    @booking = Booking.new(
+      start_time: start_time,
+      end_time: end_time,
+      instructor_id:instructor_id
+    )
   end
 
   # GET /bookings/1/edit
