@@ -2,24 +2,36 @@
   <h1 class="h2">Manage Bookings</h1>
 <% end %>
 
-<table>
-  <tr>
-    <th>Start Time</th>
-    <th>End Time</th>
-    <th>Aircraft</th>
-    <th>Instructor</th>
-  </tr>
+<table class="table table-striped">
+  <thead class="thead-dark">
+    <th scope="col">Start Date</th>
+    <th scope="col">Start Time</th>
+    <th scope="col">End Date</th>
+    <th scope="col">End Time</th>
+    <th scope="col">Aircraft</th>
+    <th scope="col">Instructor</th>
+    <th scope="col">Edit</th>
+    <th scope="col">Delete</th>
+  </thead>
 
   <% @bookings.each do |booking| %>
     <tr>
-      <td><%= booking.start_time %></td>
-      <td><%= booking.end_time %></td>
+      <td><%= booking.start_time.strftime("%F") %></td>
+      <td><%= booking.start_time.strftime("%H:%M") %></td>
+      <td><%= booking.end_time.strftime("%F") %></td>
+      <td><%= booking.end_time.strftime("%H:%M") %></td>
       <td><%= booking.plane.registration %> (<%= booking.plane.typ %>)</td>
       <td><%= booking.instructor.name if booking.instructor.present? %></td>
-      <td><%= link_to 'Edit', edit_booking_path(booking) %></td>
+      <td><%= link_to 'Edit', edit_booking_path(booking),
+              class: "btn btn-primary btn-sm" %></td>
       <td><%= link_to 'Delete', booking_path(booking),
               method: :delete,
+              class: "btn btn-danger btn-sm",
               data: {confirm: "Are you sure?"} %></td>
     </tr>
   <% end %>
 </table>
+
+<div class="flickr_pagination">
+<%= will_paginate @bookings, :container => false %>
+</div>

@@ -20,8 +20,9 @@
       <ul>
         <li><%= availability.instructor.name if availability.instructor.present?%></li>
         <li><%= availability.calendar_time(date) %></li>
+        <li><%= link_to "Book a slot", new_booking_path(instructor_id: availability.instructor.id, start_time: availability.start_time),
+                class: "btn btn-primary" %></li>
       </ul>
     </div>
   <% end %>
 <% end %>
-
