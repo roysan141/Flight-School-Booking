@@ -30,6 +30,6 @@ class Instructor < ApplicationRecord
         )
       end
     end
-    p.delete_if { |a| 30.minutes > (a.end_time - a.start_time) }
+    p.delete_if { |a| 30.minutes > (a.end_time - a.start_time) }.reject{|a|a.start_time < Time.now}
   end
 end

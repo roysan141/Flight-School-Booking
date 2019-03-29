@@ -3,6 +3,8 @@ class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :instructor, optional: true
 
+  paginates_per 5
+
   validates :start_time, presence: true
   validates :end_time, presence: true
   validates :user_id, presence: true
@@ -34,22 +36,6 @@ class Booking < ApplicationRecord
   def send_booking_confirmed_email
     if confirmed
       UserMailer.with(booking: self).booking_confirmed.deliver_now!
-    end
-  end
-
-  def self.search(term, current_page)
-    if term
-      page(current_page).where('name LIKE ?', "%#{term}%").order('id DESC')
-    else
-      page(current_page).order('id DESC')
-    end
-  end
-
-  def self.search(term, page)
-    if term
-      where('name LIKE ?', "%#{term}%").paginate(page: page, per_page: 5).order('id DESC')
-    else
-      paginate(page: page, per_page: 5).order('id DESC')
     end
   end
 
